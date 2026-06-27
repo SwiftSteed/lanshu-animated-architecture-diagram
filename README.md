@@ -5,6 +5,7 @@
 **岚叔动态架构图: premium hand-drawn animated architecture diagrams for articles, systems, and workflows.**
 
 [![Codex Skill](https://img.shields.io/badge/Codex-Skill-22C86F?style=for-the-badge)](./SKILL.md)
+[![Claude Code Skill](https://img.shields.io/badge/Claude_Code-Skill-D97757?style=for-the-badge)](./SKILL.md)
 [![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![Pillow](https://img.shields.io/badge/Pillow-Renderer-8A2BE2?style=for-the-badge)](https://python-pillow.org/)
 [![Excalidraw](https://img.shields.io/badge/Excalidraw-JSON-6965DB?style=for-the-badge)](https://excalidraw.com/)
@@ -23,7 +24,7 @@
   <a href="#verification">Verification</a>
 </p>
 
-`lanshu-animated-architecture-diagram` is a Codex skill and local renderer for creating premium black-canvas technical diagrams with hand-drawn typography, editable Excalidraw output, static PNG previews, and genuinely animated GIFs.
+`lanshu-animated-architecture-diagram` is a **cross-platform AI skill** (Codex + Claude Code) and local renderer for creating premium black-canvas technical diagrams with hand-drawn typography, editable Excalidraw output, static PNG previews, and genuinely animated GIFs.
 
 It is designed for article explanations, system architecture diagrams, process diagrams, and DailyDoseOfDS-style black-background technical sketches.
 
@@ -88,17 +89,31 @@ python3 scripts/render_animated_diagram.py \
 
 ## Installation
 
+### Codex
+
 Place this folder in your Codex skills directory:
 
 ```bash
 ~/.codex/skills/lanshu-animated-architecture-diagram
 ```
 
-Typical local install path:
+Typical Codex install path:
 
 ```bash
 ${CODEX_HOME:-$HOME/.codex}/skills/lanshu-animated-architecture-diagram
 ```
+
+### Claude Code
+
+Register as a Claude Code skill via a symlink into `~/.claude/skills/`:
+
+```bash
+ln -s "$(pwd)" ~/.claude/skills/lanshu-animated-architecture-diagram
+```
+
+After linking, Claude Code will auto-discover the skill — invoke it with `/lanshu-animated-architecture-diagram` from any project.
+
+### Runtime dependency
 
 Install the runtime dependency:
 
@@ -119,6 +134,22 @@ Chinese prompt example:
 ```text
 用 $lanshu-animated-architecture-diagram 把这篇文章整理成岚叔动态架构图，输出 GIF、PNG 和 Excalidraw。
 ```
+
+## Use With Claude Code
+
+Invoke the registered skill from any Claude Code session:
+
+```text
+/lanshu-animated-architecture-diagram 把这篇文章整理成岚叔动态架构图
+```
+
+Or as a natural-language request:
+
+```text
+Use the lanshu animated architecture diagram skill to turn this system design into a premium dark-canvas animated GIF.
+```
+
+The `CLAUDE.md` at the repo root also serves as project-level documentation — Claude Code reads it automatically when working inside this repository.
 
 ## CLI Usage
 
@@ -231,12 +262,16 @@ Optional:
 
 ```text
 lanshu-animated-architecture-diagram/
-├── SKILL.md
+├── SKILL.md                  # Skill workflow (shared: Codex + Claude Code)
+├── CLAUDE.md                 # Claude Code project-level context
 ├── README.md
 ├── LICENSE
 ├── requirements.txt
 ├── agents/
-│   └── openai.yaml
+│   └── openai.yaml           # Codex agent definition
+├── .claude/
+│   └── agents/
+│       └── lanshu.md         # Claude Code agent definition
 ├── assets/
 │   ├── default-spec.json
 │   └── previews/
@@ -245,7 +280,7 @@ lanshu-animated-architecture-diagram/
 ├── references/
 │   └── spec-format.md
 └── scripts/
-    └── render_animated_diagram.py
+    └── render_animated_diagram.py  # Core renderer (platform-agnostic)
 ```
 
 ## Design Notes
