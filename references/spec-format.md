@@ -27,7 +27,7 @@ visual hierarchy.
 - Core card body: 2 lines, each under 22 characters
 - Panel card title: 1 to 3 words
 - Panel card body: 1 to 2 short lines
-- Signature: short handle, such as `@岚叔`
+- Signature: short handle, such as `@Peng`
 
 ## Text Fitting
 

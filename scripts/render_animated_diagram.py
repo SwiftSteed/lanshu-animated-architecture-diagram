@@ -468,7 +468,7 @@ def render_static(spec):
     draw_text(ex, draw, title.get("subtitle", ""), 104, 90, 420, 25, 15, THEME["muted"], "left")
 
     draw_rect(ex, draw, 18, 117, 1174, 994, THEME["frame"], None, 2, 29)
-    brand(ex, draw, spec.get("signature", "@岚叔"))
+    brand(ex, draw, spec.get("signature", "@Peng"))
 
     inputs = spec.get("inputs", [])
     while len(inputs) < 4:
